@@ -1,0 +1,71 @@
+.container{
+  margin-top: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-body{
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.central{
+  height: 300px;
+  width: 900px;
+  margin-bottom: 5%;
+}
+
+.card-title{
+  color:blueviolet
+}
+
+.card-text-center{
+  font-size: 25pt;
+  text-align: center;
+
+}
+
+.size{
+  height: 350px;
+  margin-bottom: 4%;
+}
+
+.card-text{
+   /* text-align: justify; */
+  font-size: 13pt;
+}
+
+.clock{
+  width: 130px;
+  height: 130px;
+  margin-left: 25%;
+  margin-top: 5%;
+
+
+}
+
+.spray{
+  width: 130px;
+  height: 130px;
+  margin-left: 25%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.shield{
+  width: 130px;
+  height: 130px;
+  margin-left: 25%;
+  margin-top: 5%;
+  margin-bottom: 9%;
+}
+
+.undo{
+  font-size: 15pt;
+}

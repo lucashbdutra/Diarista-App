@@ -1,0 +1,77 @@
+.d-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+
+}
+
+
+#input-buscar-clientes {
+  width: 700px;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+#botao-buscar-clientes {
+  width: 100px;
+  height: 35px;
+  margin-bottom: 1%;
+  text-align: center;
+}
+
+#tabela-clientes tbody{
+
+  text-align: center;
+
+}
+
+#tabela-clientes thead tr {
+
+  color: white;
+  text-align: center;
+
+}
+
+#tabela-clientes .id-cliente {
+  padding-left: 20px;
+}
+
+
+#form-clientes {
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 80px;
+  margin-left: 30px;
+  margin-right: 30px;
+  color: white;
+}
+
+.col-md-4 {
+  margin-bottom: 10px;
+
+}
+
+.delete{
+  color: red;
+}
+
+.fields{
+  margin-right: 100px;
+}
+
+.btn-danger{
+  margin-left: 5px;
+}
+
+.box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cor{
+  background-color: rgb(59, 59, 59);
+  width: 12%;
+}

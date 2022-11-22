@@ -1,0 +1,42 @@
+<div class="img">
+  <div id="login">
+    <div class="container">
+      <div class="forms">
+          <div class="form login">
+              <span class="title">Cadastrar Login</span>
+
+              <form [formGroup]="form" (ngSubmit)="onCadastro()">
+                  <div class="input-field">
+                      <input type="text" placeholder="Entre com usuário" formControlName="username">
+                  </div>
+
+                  <div class="input-field">
+                      <input type="password" class="password" placeholder="Digite a sua senha" formControlName="password">
+                  </div>
+
+                  <div class="input-field">
+                    <input type="password" class="password" placeholder="Digite a sua senha" formControlName="confirmarSenha">
+                </div>
+
+                  <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="termCon">
+                        <label for="termCon" class="text">Eu aceite todos os <a class="login-link">termos e condições</a></label>
+                    </div>
+                  </div>
+
+                  <div class="input-field button">
+                      <input type="submit" value="Cadastrar">
+                  </div>
+              </form>
+
+              <div class="login-signup">
+                <span class="text">Já é um membro?
+                    <a (click)="onLogin()" class="text login-link">Conecte-se agora</a>
+                </span>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

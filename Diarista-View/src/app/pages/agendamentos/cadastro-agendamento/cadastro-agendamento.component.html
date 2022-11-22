@@ -1,0 +1,81 @@
+<div *ngIf="idAgendamento || !isShow">
+
+  <div class="cont">
+    <div class="layout">
+
+      <h1>{{idAgendamento? 'Editar' : "Cadastrar"}} Agendamento</h1>
+      <form id="form-clientes" class="row g-3 needs-validation" [formGroup]="agendamento" (ngSubmit)="cadastrar()">
+
+        <div class="col-md-4" *ngIf="idAgendamento">
+            <label for="validationCustom01" class="form-label">Data Agendamento</label>
+            <input type="datetime-local" class="form-control" formControlName="dataAgendada"
+            placeholder="Data e Hora do Agendamento">
+        </div>
+
+        <div class="col-md-4" *ngIf="!idAgendamento">
+          <label for="validationCustom01" class="form-label">Data Agendamento</label>
+          <input type="datetime-local" class="form-control" formControlName="dataAgendada" placeholder="Data e Hora do Agendamento">
+        </div>
+
+        <button id="botao-cadastrar-cliente" class="btn btn-success" type="submit" [disabled]="!agendamento.valid">
+        {{idAgendamento? 'Editar' : "Cadastrar"}} Agendamento</button>
+        <button id="botao-cadastrar-cliente" class="btn btn-danger" type="button" (click)="hide()">
+          Voltar</button>
+      </form>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+<div *ngIf="!idAgendamento && isShow">
+
+  <form class="d-flex" role="search">
+    <input id="buscar" class="form-control me-2" type="search" placeholder="Digite o endereço da diarista"
+    aria-label="Search" (input)="search($event)">
+  </form>
+
+    <h2>Selecione a diarista desejada: </h2>
+  <div class="mb-3 clients-list">
+    <table
+      class="table table-striped table-dark table-sm"
+    >
+      <thead>
+        <tr>
+          <th scope="col" style="width: 30px"></th>
+          <th scope="col">Nome da Diarista</th>
+          <th scope="col">Localidade</th>
+          <th scope="col">Contato</th>
+          <th scope="col">Avaliação</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let diarista of diaristas">
+          <td>
+            <div class="input-div">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="cliente"
+                (change)="handleDiarista(diarista)"
+              />
+            </div>
+          </td>
+          <td> {{ diarista.nome }} </td>
+          <td> {{ diarista.endereco }} </td>
+          <td> {{ diarista.contato }} </td>
+          <td> {{ diarista.avaliacao? diarista.avaliacao: 'Não possui avaliação.' }} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="botao">
+    <button type="button" class="btn btn-info" *ngIf="diaristas.length > 0" (click)="hide()">Selecionar</button>
+  </div>
+
+</div>
+

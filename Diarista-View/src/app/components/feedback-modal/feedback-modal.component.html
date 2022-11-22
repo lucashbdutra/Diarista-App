@@ -1,0 +1,67 @@
+
+<div class="card" *ngIf="!idAvaliacao">
+  <div class="card-body">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Avaliação</h5>
+      </div>
+      <div class="modal-body">
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <form [formGroup]="avaliacao" (ngSubmit)="registrar()">
+          <div class="container">
+            <div class="row">
+              <div class="estrelas">
+                <input type="radio" id="cm_star-empty" name="estrelas" value="" checked>
+                <label for="cm_star-1"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-1" name="estrelas" value="1" formControlName="estrelas">
+                <label for="cm_star-2"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-2" name="estrelas" value="2" formControlName="estrelas">
+                <label for="cm_star-3"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-3" name="estrelas" value="3" formControlName="estrelas">
+                <label for="cm_star-4"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-4" name="estrelas" value="4" formControlName="estrelas">
+                <label for="cm_star-5"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-5" name="estrelas" value="5" formControlName="estrelas">
+              </div>
+            </div>
+            <div class="row space">
+              <label for="validationCustom01" class="form-label">Escreva um comentário para a diarista {{diarista}}:</label>
+              <textarea class="form-control" formControlName="comentario" placeholder="Digite seu comentário"></textarea>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer" *ngIf="!idAvaliacao">
+        <button
+          type="submit"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="registrar()"
+        >
+          Sim
+        </button>
+        <button type="button" class="btn btn-primary" (click)="fecharModal()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="idAvaliacao" class="newModal">
+  <form [formGroup]="avaliacao">
+
+    <p>
+      <label for="validationCustom01" class="form-label">Nota do usuário:</label>
+    <input type="text" class="form-control" formControlName="estrelas">
+    </p>
+
+    <p>
+      <label for="validationCustom01" class="form-label">Comentário:</label>
+      <textarea class="form-control" formControlName="comentario"></textarea>
+    </p>
+
+  </form>
+</div>

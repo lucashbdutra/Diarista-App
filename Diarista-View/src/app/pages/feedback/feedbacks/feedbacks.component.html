@@ -1,0 +1,57 @@
+<div class="corpo">
+  <div>
+    <form class="d-flex" role="search">
+      <input id="input-buscar-clientes" class="form-control me-2" type="search" placeholder="Digite o nome da diarista"
+      aria-label="Search" (input)="search($event)">
+    </form>
+  </div>
+
+  <div id="tabela-clientes">
+    <h1 [align]="'center'">Feedbacks</h1>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th class="id-cliente">#</th>
+                <th scope="col">Nome do Cliente</th>
+                <th scope="col">Nome da Diarista</th>
+                <th scope="col">Data e Hora Agendada</th>
+                <th scope="col">Data Realizada</th>
+                <th scope="col">Avaliação</th>
+            </tr>
+        </thead>
+        <tbody class="fields">
+            <tr *ngFor="let agendamento of agendamentos | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td class="id-cliente">{{agendamento.id}}</td>
+                <td>{{agendamento.cliente.nome}}</td>
+                <td>{{agendamento.diarista.nome}}</td>
+                <td>{{agendamento.dataAgendadaStr}}</td>
+                <td>{{agendamento.dataRealizada}}</td>
+                <td *ngIf="agendamento.dataRealizada">
+                  <button class="btn btn-success" (click)="openModalComponent(agendamento.id,
+                  agendamento.diarista.nome, agendamento.diarista.id)"
+                  *ngIf="!isDiarista && agendamento.comentario === null">
+                    Avaliar
+                  </button>
+                  <div *ngIf="!isDiarista && agendamento.comentario != null">
+                    Já avaliado!
+                  </div>
+                  <button class="btn btn-success" (click)="openModal(agendamento.id)" *ngIf="isDiarista && agendamento.comentario != null">
+                    Ver avaliação
+                  </button>
+                  <div *ngIf="isDiarista && agendamento.comentario === null">
+                    Ainda não avaliado pelo usuário.
+                  </div>
+                </td>
+                <td class="table-danger" *ngIf="!agendamento.dataRealizada">
+                  Avaliação não disponível!
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+

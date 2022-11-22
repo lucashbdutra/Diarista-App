@@ -1,0 +1,73 @@
+<div class="img">
+  <div id="login">
+    <div class="cont">
+      <div class="forms">
+          <div class="form login">
+              <span class="title">{{idDiarista == 0? 'Cadastrar': 'Editar' }} Diarista</span>
+
+              <form [formGroup]="formDiarista" (ngSubmit)="onCadastro()">
+                <div class="container">
+                  <div class="row">
+
+                    <div class="col">
+                      <div class="input-field">
+                        <input type="text" placeholder="Digite seu nome" formControlName="nome">
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="input-field">
+                        <input type="text" placeholder="Digite seu cpf" formControlName="cpf">
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+
+                    <div class="col">
+                      <div class="input-field">
+                        <input type="email" placeholder="Digite seu email" formControlName="email">
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="input-field">
+                        <input type="text" placeholder="Digite seu telefone" formControlName="contato">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col">
+                      <div class="input-field">
+                        <input type="text" placeholder="Digite seu endereco" formControlName="endereco">
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="input-field">
+                        <input type="text" placeholder="Digite sua chave pix" formControlName="pix">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="input-field button">
+                    <input type="submit" value="Salvar" [disabled]="!formDiarista.valid">
+                </div>
+              </form>
+
+              <div class="login-signup" *ngIf="idDiarista == 0">
+                  <span class="text">Já possui um cadastro?
+                      <a class="text signup-link" routerLink="/login">Faça seu login</a>
+                  </span>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,45 @@
+<div class="img">
+  <div id="login">
+    <div class="container">
+      <div class="forms">
+          <div class="form login">
+              <span class="title">Entrar</span>
+
+              <form [formGroup]="form" (ngSubmit)="onLogin()">
+                  <div class="input-field">
+                      <input type="text" placeholder="Entre com usuário" formControlName="username">
+                  </div>
+
+                  <div class="input-field">
+                      <input type="password" class="password" placeholder="Digite a sua senha" formControlName="password">
+                  </div>
+
+                  <div class="checkbox-text">
+                      <div class="checkbox-content">
+                          <input type="checkbox" id="logCheck">
+                          <label for="logCheck" class="text">Salvar Login</label>
+                      </div>
+
+                      <a href="#" class="text">Esquceu a sua senha?</a>
+                  </div>
+
+                  <div class="input-field button">
+                      <input type="submit" value="Entra">
+                  </div>
+              </form>
+
+              <div class="login-signup">
+                  <span class="text">Não é um cliente ainda?
+                      <a class="text signup-link" routerLink="cadastro/usuario">Cadastre-se como cliente</a>
+                  </span>
+                  <p>
+                    <span class="text"> Quer ser uma de nossas diaristas?
+                      <a class="text signup-link" routerLink="cadastro/diarista">Inscreva-se agora</a>
+                    </span>
+                  </p>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
