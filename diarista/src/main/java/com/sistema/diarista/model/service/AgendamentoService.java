@@ -15,10 +15,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AgendamentoService extends GenericCrudService<Agendamento, Long, AgendamentoRepository>{
@@ -36,9 +33,6 @@ public class AgendamentoService extends GenericCrudService<Agendamento, Long, Ag
         List<AgendamentoDTO> dtoList = new ArrayList<>();
 
         if(list.isPresent()){
-            Date dataRealizada;
-            Date dataCriacao;
-            Date dataAgendada;
             String format;
             for(Agendamento a : list.get()){
                 AgendamentoDTO agendamentoDTO = new AgendamentoDTO();
@@ -59,6 +53,35 @@ public class AgendamentoService extends GenericCrudService<Agendamento, Long, Ag
 
         }
 
+        return dtoList;
+    }
+
+    public List<AgendamentoDTO> listarPorDiaristaId(Long id){
+
+        Optional<List<Agendamento>> list = agendamentoRepository.findByDiaristaId(id);
+
+        List<AgendamentoDTO> dtoList = new ArrayList<>();
+
+        if(list.isPresent()){
+            String format;
+            for(Agendamento a : list.get()){
+                AgendamentoDTO agendamentoDTO = new AgendamentoDTO();
+                if(a.getDataRealizada() != null){
+                    format = DF.format(a.getDataRealizada());
+                    agendamentoDTO.setDataRealizada(format);
+                }
+                agendamentoDTO.setCriacao(DF.format(a.getCriacao()));
+                agendamentoDTO.setDataAgendadaStr(DF.format(a.getDataAgendada()));
+                agendamentoDTO.setDataAgendada(a.getDataAgendada());
+                agendamentoDTO.setCliente(a.getCliente());
+                agendamentoDTO.setDiarista(a.getDiarista());
+                agendamentoDTO.setId(a.getId());
+                agendamentoDTO.setComentario(a.getComentario());
+                agendamentoDTO.setEstrelas(a.getEstrelas());
+                dtoList.add(agendamentoDTO);
+            }
+
+        }
         return dtoList;
     }
 
@@ -74,38 +97,6 @@ public class AgendamentoService extends GenericCrudService<Agendamento, Long, Ag
 
         return agendamentoDTO;
 
-    }
-
-    public List<AgendamentoDTO> listarPorDiaristaId(Long id){
-
-        Optional<List<Agendamento>> list = agendamentoRepository.findByDiaristaId(id);
-
-        List<AgendamentoDTO> dtoList = new ArrayList<>();
-
-        if(list.isPresent()){
-            Date dataRealizada;
-            Date dataCriacao;
-            Date dataAgendada;
-            String format;
-            for(Agendamento a : list.get()){
-                AgendamentoDTO agendamentoDTO = new AgendamentoDTO();
-                if(a.getDataRealizada() != null){
-                    format = DF.format(a.getDataRealizada());
-                    agendamentoDTO.setDataRealizada(format);
-                }
-                agendamentoDTO.setCriacao(DF.format(a.getCriacao()));
-                agendamentoDTO.setDataAgendadaStr(DF.format(a.getDataAgendada()));
-                agendamentoDTO.setDataAgendada(a.getDataAgendada());
-                agendamentoDTO.setCliente(a.getCliente());
-                agendamentoDTO.setDiarista(a.getDiarista());
-                agendamentoDTO.setId(a.getId());
-                agendamentoDTO.setComentario(a.getComentario());
-                agendamentoDTO.setEstrelas(a.getEstrelas());
-                dtoList.add(agendamentoDTO);
-            }
-
-        }
-        return dtoList;
     }
 
     public AgendamentoDTO criarAgendamento(AgendamentoDTO agendamentoDTO){
@@ -165,8 +156,10 @@ public class AgendamentoService extends GenericCrudService<Agendamento, Long, Ag
     }
 
 //    public static void main(String[] args) throws ParseException {
-//        Date data = DF.parse("2022-11-23T16:10");
-//        System.out.println(data);
+////        String data = "2022-11-22T14:40:00.000+00:00";
+//        Date data = new Date();
+//        Calendar calendar = Calendar.getInstance();
+//        System.out.println(DF.format(data));
 //    }
 
 
