@@ -1,3 +1,4 @@
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,11 +18,10 @@ export class LoginComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private loginService: LoginService,
     private toaster: ToastrService,
+    private localStorage: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute
   ) {
-
-    localStorage.removeItem('username');
   }
 
   ngOnInit(): void {
@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
 
       this.loginService.authenticate(login).subscribe((login: Login) => {
         if(login){
-
-          if(login.isDiarista){
-            this.loginService.setData(login, 'true');
-          } else{
+          if(login.isCliente === 'true'){
             this.loginService.setData(login, 'false');
+          } else{
+            login.isDiarista = true;
+            this.loginService.setData(login, 'true');
           }
 
           this.form.reset();
@@ -67,12 +67,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onAuthenticated(){
-    return this.loginService.isAuthenticated();
-  }
+  cadastrado(){
+    let isCadastrado = this.loginService.isCadastrado();
+    let isDiarista = this.localStorage.get('isDiarista');
 
-  onCadastro(){
-    this.router.navigate(['cadastro/usuario'], {relativeTo:this.route});
+    if(isCadastrado){
+      this.router.navigate(['home']);
+    } else{
+      if(isDiarista === 'true'){
+        this.router.navigate(['cadastro/diarista'], {relativeTo:this.route})
+      } else{
+        this.router.navigate(['cadastro/usuario'], {relativeTo:this.route})
+      }
+    }
   }
-
 }

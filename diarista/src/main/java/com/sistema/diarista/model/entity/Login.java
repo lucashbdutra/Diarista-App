@@ -1,7 +1,9 @@
 package com.sistema.diarista.model.entity;
 
+import com.sistema.diarista.controller.security.Role;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -9,11 +11,13 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @ToString
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Login implements UserDetails, Serializable {
@@ -29,7 +33,9 @@ public class Login implements UserDetails, Serializable {
     private String username;
     @NotBlank
     private String password;
-    private Boolean isDiarista;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToOne
     @JoinColumn(name = "fk_cliente_id")
@@ -42,7 +48,8 @@ public class Login implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override

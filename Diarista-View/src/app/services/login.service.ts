@@ -14,29 +14,22 @@ export class LoginService {
     private localStorage: LocalStorageService
     ) { }
 
-  endpoint = 'login';
+  endpoint = 'auth';
   api = environment.api;
 
-  public username: string | undefined = '';
-  public password: string | undefined= '';
   public authorizationData = '';
   public httpOptions = {
     headers: new HttpHeaders()
   };
 
   setData(login: Partial<Login>, isDia: string){
-    this.localStorage.set('id', String(login.id));
+    this.localStorage.set('token', String(login.token));
     this.localStorage.set('isDiarista', isDia);
-    this.localStorage.set('username', String(login.username));
-    this.localStorage.set('password', String(login.password));
-
-    this.username = this.localStorage.get('username');
-    this.password = this.localStorage.get('password');
-
+    this.localStorage.set('loginName', String(login.username))
   }
 
   getOptions(){
-    this.authorizationData = 'Basic ' + btoa(this.localStorage.get('username') + ':' + this.localStorage.get('password'));
+    this.authorizationData = 'Bearer ' + this.localStorage.get('token');
     return this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -50,7 +43,19 @@ export class LoginService {
   }
 
   cadastro(login: Partial<Login>){
-    return this.http.post<Login>(`${this.api}/${this.endpoint}/`, login);
+    return this.http.post<Login>(`${this.api}/${this.endpoint}/register/`, login);
+  }
+
+  relacionarCliente(cpfCliente: string){
+    let username: string = this.localStorage.get('loginName');
+    return this.http.put<Login>(`${this.api}/${this.endpoint}/relacionarCliente?
+    cpfCliente=${cpfCliente}&username=${username}`, this.getOptions());
+  }
+
+  relacionarDiarista(cpfDiarista: string){
+    let username: string = this.localStorage.get('loginName');
+    return this.http.put<Login>(`${this.api}/${this.endpoint}/relacionarDiarista?
+    cpfDiarista=${cpfDiarista}&username=${username}`, this.getOptions());
   }
 
   logOut(){
@@ -58,8 +63,13 @@ export class LoginService {
   }
 
   isAuthenticated(){
-    let userPresent = this.localStorage.get('username');
-    return userPresent ? true: false;
+    let isTokenPresent = this.localStorage.get('token');
+    return isTokenPresent ? true: false;
+  }
+
+  isCadastrado(){
+    let isUsernamePresent = this.localStorage.get('username');
+    return isUsernamePresent ? true : false;
   }
 
 }

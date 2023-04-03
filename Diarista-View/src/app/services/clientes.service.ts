@@ -19,11 +19,11 @@ export class ClientesService {
     ) { }
 
   listarTodosClientes() {
-    return this.http.get<ICliente[]>(`${this.api}/${this.endpoint}/`);
+    return this.http.get<ICliente[]>(`${this.api}/${this.endpoint}/`, this.loginService.getOptions());
   }
 
   adcionarCliente(cliente: Partial<ICliente>){
-    return this.http.post<ICliente>(`${this.api}/${this.endpoint}/`, cliente);
+    return this.http.post<ICliente>(`${this.api}/${this.endpoint}/`, cliente, this.loginService.getOptions());
   }
 
   removerCliente(id: string){
@@ -35,7 +35,7 @@ export class ClientesService {
   }
 
   buscarClientePorId(id: number) {
-    return this.http.get<ICliente>(`${this.api}/${this.endpoint}/${id}`);
+    return this.http.get<ICliente>(`${this.api}/${this.endpoint}/${id}`, this.loginService.getOptions());
   }
 
 }

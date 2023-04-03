@@ -1,5 +1,6 @@
 package com.sistema.diarista.controller.rest;
 
+import com.sistema.diarista.controller.rest.GenericCrudRest;
 import com.sistema.diarista.model.DTO.AgendamentoDTO;
 import com.sistema.diarista.model.entity.Agendamento;
 import com.sistema.diarista.model.service.AgendamentoService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("rest/agendamentos")
-public class AgendamentoRest extends GenericCrudRest<Agendamento, Long, AgendamentoService>{
+public class AgendamentoRest extends GenericCrudRest<Agendamento, Long, AgendamentoService> {
 
     @Autowired
     private AgendamentoService agendamentoService;

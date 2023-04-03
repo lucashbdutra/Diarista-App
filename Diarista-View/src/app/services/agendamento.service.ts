@@ -19,11 +19,11 @@ export class AgendamentoService {
     ) { }
 
   listarPorClienteId(id: number) {
-    return this.http.get<Agendamento[]>(`${this.api}/${this.endpoint}/search/cliente/${id}`);
+    return this.http.get<Agendamento[]>(`${this.api}/${this.endpoint}/search/cliente/${id}`, this.loginService.getOptions());
   }
 
   listarPorDiaristaId(id: number) {
-    return this.http.get<Agendamento[]>(`${this.api}/${this.endpoint}/search/diarista/${id}`);
+    return this.http.get<Agendamento[]>(`${this.api}/${this.endpoint}/search/diarista/${id}`, this.loginService.getOptions());
   }
 
   adcionarAgendamento(agendamento: Partial<Agendamento>){
@@ -39,7 +39,7 @@ export class AgendamentoService {
   }
 
   buscarAgendamentoPorId(id: number) {
-    return this.http.get<Agendamento>(`${this.api}/${this.endpoint}/${id}`);
+    return this.http.get<Agendamento>(`${this.api}/${this.endpoint}/${id}`, this.loginService.getOptions());
   }
 
   visitaRealizada(id: number){

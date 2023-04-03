@@ -17,13 +17,7 @@ import { ICliente } from 'src/app/interfaces/cliente';
   styleUrls: ['./cadastro-login.component.css']
 })
 export class CadastroLoginComponent implements OnInit {
-
-  idDiarista = 0;
-  idCliente = 0;
   isDiarista = '';
-
-  diarista?: Diarista;
-  cliente?: ICliente;
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
@@ -36,46 +30,35 @@ export class CadastroLoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isDiarista = String(this.route.snapshot.paramMap.get('isDia'));
-    if(this.isDiarista === 'yes'){
-
-      this.idDiarista = Number(this.route.snapshot.paramMap.get('id'));
-      this.diaristaService.buscarDiaristaPorId(this.idDiarista).subscribe((diarista: Diarista) => {
-        this.diarista = diarista;
-      })
-
-    } else{
-
-      this.idCliente = Number(this.route.snapshot.paramMap.get('id'));
-      this.clienteService.buscarClientePorId(this.idCliente).subscribe((cliente: ICliente) => {
-        this.cliente = cliente;
-      })
-    }
   }
+
+  /**
+   * *Enviar para a respectiva tela de cadastro (cliente/diarista),
+   * *no componente de login fazer uma verificação apos o usuário ser autenticado
+   * *pra ver se ele ja se cadastrou (nome, cpf, etc) ou se ele so tem o login.
+   * *E mudar os redirects de todos os components.
+   * *Fazer também um novo setData() (login.service) para setar o nome de usuário e id.
+   * *Arrumar o LoginDTO do back.
+   */
 
   form = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
-    confirmarSenha: ['', Validators.required]
+    confirmarSenha: ['', Validators.required],
+    isDiarista: ['', Validators.required]
   })
 
   onCadastro(){
 
     const senha = this.form.value.password;
     const confirmar = this.form.value.confirmarSenha;
-    if(senha == confirmar){
+    if(senha === confirmar){
 
       const login: Login = {
         username: String(this.form.value.username),
         password: String(senha),
-        isDiarista: this.isDiarista === 'yes'? true: false
+        isDiarista: this.isDiarista === 'true'? true: false
       };
-
-      if(login.isDiarista){
-        login.diarista = this.diarista;
-      } else{
-        login.cliente = this.cliente;
-      }
 
       if(this.form.valid){
 
@@ -85,7 +68,7 @@ export class CadastroLoginComponent implements OnInit {
               this.toaster.success('Cadastro realizado com sucesso!', '', {
                 timeOut: 2000,
               });
-              this.router.navigate(['/login']);
+              this.onLogin();
             }
           }, (error) => {
             this.toaster.error('Nome de usuário ja está em uso!', '', {

@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'login/cadastro/:isDia/:id', component: CadastroLoginComponent
+    path: 'login/cadastro', component: CadastroLoginComponent
   },
   {
     path: 'login/cadastro/usuario', component: CadastrarUsuarioComponent

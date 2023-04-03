@@ -1,3 +1,6 @@
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Login } from 'src/app/interfaces/login';
+import { LoginService } from 'src/app/services/login.service';
 import { ClientesService } from './../../../services/clientes.service';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -17,12 +20,20 @@ export class CadastrarUsuarioComponent implements OnInit {
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private clienteService: ClientesService,
+    private loginService: LoginService,
+    private localStorage: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.idCliente = Number(this.route.snapshot.paramMap.get('id'));
+    if(this.idCliente){
+      this.buscarPorId();
+    }
+  }
+
+  buscarPorId(){
     this.clienteService.buscarClientePorId(this.idCliente).subscribe((cliente: ICliente) => {
       this.formCliente.setValue({
         nome: cliente.nome,
@@ -77,7 +88,12 @@ export class CadastrarUsuarioComponent implements OnInit {
 
       this.clienteService.adcionarCliente(cliente).subscribe((cliente: ICliente) => {
         if(cliente){
-          this.router.navigate([`/login/cadastro/no/${cliente.id}`])
+          this.loginService.relacionarCliente(cliente.cpf).subscribe((login: Login) => {
+            if(login){
+              this.localStorage.set('username', login.username);
+              this.localStorage.set('id', String(login.id));
+            }
+          });
         }
       });
 

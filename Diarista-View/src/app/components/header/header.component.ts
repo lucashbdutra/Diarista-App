@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isPresent();
-    console.log(this.id)
   }
 
   isPresent(){
