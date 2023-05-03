@@ -23,9 +23,12 @@ export class LoginService {
   };
 
   setData(login: Partial<Login>, isDia: string){
+    console.log(login);
     this.localStorage.set('token', String(login.token));
+    this.localStorage.set('id', String(login.id));
     this.localStorage.set('isDiarista', isDia);
-    this.localStorage.set('loginName', String(login.username))
+    this.localStorage.set('username', String(login.username))
+    this.localStorage.set('idUser', String(login.idUser));
   }
 
   getOptions(){
@@ -46,16 +49,20 @@ export class LoginService {
     return this.http.post<Login>(`${this.api}/${this.endpoint}/register/`, login);
   }
 
-  relacionarCliente(cpfCliente: string){
-    let username: string = this.localStorage.get('loginName');
-    return this.http.put<Login>(`${this.api}/${this.endpoint}/relacionarCliente?
-    cpfCliente=${cpfCliente}&username=${username}`, this.getOptions());
+  hasCadastro(username: string){
+    return this.http.get<boolean>(`${this.api}/${this.endpoint}/hasCadastro/${username}`);
   }
 
-  relacionarDiarista(cpfDiarista: string){
-    let username: string = this.localStorage.get('loginName');
-    return this.http.put<Login>(`${this.api}/${this.endpoint}/relacionarDiarista?
-    cpfDiarista=${cpfDiarista}&username=${username}`, this.getOptions());
+  relacionarCliente(cpfCliente: string){
+    let username: string = this.localStorage.get('username');
+    return this.http.put<Login>(`${this.api}/${this.endpoint}/relacionarCliente?`
+    +`cpfCliente=${cpfCliente}&username=${username}`, this.getOptions());
+  }
+
+  relacionarDiarista(cpfDiarista: string,){
+    let username: string = this.localStorage.get('username');
+    return this.http.put<Login>(`${this.api}/${this.endpoint}/relacionarDiarista?`
+    +`cpfDiarista=${cpfDiarista}&username=${username}`, this.getOptions());
   }
 
   logOut(){

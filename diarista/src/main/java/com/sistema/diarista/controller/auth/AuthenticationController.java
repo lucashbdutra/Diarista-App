@@ -2,10 +2,7 @@ package com.sistema.diarista.controller.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/auth")
@@ -30,6 +27,23 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
+
+    @GetMapping("/hasCadastro/{username}")
+    public ResponseEntity<Boolean> hasCadastro(@PathVariable String username){
+        return ResponseEntity.ok(service.hasCadastro(username));
+    }
+
+    @PutMapping("/relacionarDiarista")
+    public ResponseEntity<AuthenticationResponse>  relacionarDiarista(@RequestParam String cpfDiarista, @RequestParam String username){
+
+        return ResponseEntity.ok(service.relacionarDiarista(cpfDiarista, username));
+    }
+
+    @PutMapping("/relacionarCliente")
+    public ResponseEntity<AuthenticationResponse>  relacionarCliente(@RequestParam String cpfCliente, @RequestParam String username){
+
+        return ResponseEntity.ok(service.relacionarCliente(cpfCliente, username));
+    }
 
 
 }

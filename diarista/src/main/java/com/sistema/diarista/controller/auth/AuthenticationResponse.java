@@ -11,7 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationResponse {
 
+    private Long id;
+    private Long idUser;
     private String token;
+    private String username;
     private String isCliente;
+    private boolean cadastrado;
 
 }

@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
           if(login.isCliente === 'true'){
             this.loginService.setData(login, 'false');
           } else{
-            login.isDiarista = true;
             this.loginService.setData(login, 'true');
           }
 

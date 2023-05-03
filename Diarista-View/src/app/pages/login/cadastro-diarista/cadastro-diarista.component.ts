@@ -5,6 +5,8 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validacoes } from 'src/app/components/utils/validacoes';
 import { Diarista } from 'src/app/interfaces/diarista';
+import { Login } from 'src/app/interfaces/login';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-cadastro-diarista',
@@ -18,6 +20,7 @@ export class CadastroDiaristaComponent implements OnInit {
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private diaristaService: DiaristaService,
+    private loginService: LoginService,
     private localStorage: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute
@@ -81,7 +84,11 @@ export class CadastroDiaristaComponent implements OnInit {
 
       this.diaristaService.adcionarDiarista(diarista).subscribe((diarista: Diarista) => {
         if(diarista){
-          this.router.navigate([`/login/cadastro/yes/${diarista.id}`])
+          this.loginService.relacionarDiarista(diarista.cpf).subscribe((login: Login) => {
+            if(login){
+              this.localStorage.set('idUser', String(login.idUser));
+            }
+          });
         }
       });
     }

@@ -1,10 +1,12 @@
 package com.sistema.diarista.controller.auth;
 
 import com.sistema.diarista.controller.security.Role;
-import com.sistema.diarista.controller.security.config.JwtService;
+import com.sistema.diarista.controller.security.JwtService;
 import com.sistema.diarista.model.entity.Cliente;
 import com.sistema.diarista.model.entity.Diarista;
 import com.sistema.diarista.model.entity.Login;
+import com.sistema.diarista.model.repository.ClienteRepository;
+import com.sistema.diarista.model.repository.DiaristaRepository;
 import com.sistema.diarista.model.repository.LoginRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final LoginRepository repository;
+    private final DiaristaRepository diaristaRepository;
+    private final ClienteRepository clienteRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -78,14 +82,68 @@ public class AuthenticationService {
         Role role = user.getRole();
         if(role == Role.DIARISTA){
             return AuthenticationResponse.builder()
+                    .username(user.getUsername())
+                    .id(user.getId())
+                    .idUser(user.getDiarista() != null ? user.getDiarista().getId() : null)
                     .isCliente("false")
                     .token(jwtToken)
                     .build();
         }
 
         return AuthenticationResponse.builder()
+                .username(user.getUsername())
+                .id(user.getId())
+                .idUser(user.getCliente() != null ? user.getCliente().getId() : null)
                 .isCliente("true")
                 .token(jwtToken)
                 .build();
+    }
+
+    public boolean hasCadastro(String username) {
+
+        var user = repository.findByUsername(username).orElse(null);
+
+        Role role = user.getRole();
+        if(role == Role.DIARISTA){
+            return user.getDiarista() != null;
+        }
+
+        return user.getCliente() != null;
+    }
+
+    public AuthenticationResponse relacionarDiarista(String cpfDiarista, String username){
+        var user = repository.findByUsername(username).orElse(null);
+        Diarista diarista = diaristaRepository.findByCpf(cpfDiarista).orElse(null);
+
+        if(diarista != null){
+            user.setDiarista(diarista);
+            repository.save(user);
+
+            return AuthenticationResponse.builder()
+                    .username(user.getUsername())
+                    .id(user.getId())
+                    .idUser(diarista.getId())
+                    .build();
+        }
+        return null;
+
+    }
+
+    public AuthenticationResponse relacionarCliente(String cpfCliente, String username){
+        var user = repository.findByUsername(username).orElse(null);
+        Cliente cliente = clienteRepository.findByCpf(cpfCliente).orElse(null);
+
+        if(cliente != null){
+            user.setCliente(cliente);
+            repository.save(user);
+
+            return AuthenticationResponse.builder()
+                    .username(user.getUsername())
+                    .id(user.getId())
+                    .idUser(cliente.getId())
+                    .build();
+        }
+
+        return null;
     }
 }

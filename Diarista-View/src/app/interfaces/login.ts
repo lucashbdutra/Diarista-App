@@ -5,8 +5,10 @@ export interface Login {
   password: string,
   isDiarista: boolean,
   isCliente?: string,
+  cadastrado?:boolean,
   cliente?: ICliente,
   diarista?: Diarista,
   id?: number,
+  idUser?: number,
   token?: string;
 }

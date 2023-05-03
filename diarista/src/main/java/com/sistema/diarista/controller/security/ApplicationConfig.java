@@ -1,4 +1,4 @@
-package com.sistema.diarista.controller.security.config;
+package com.sistema.diarista.controller.security;
 
 import com.sistema.diarista.model.repository.LoginRepository;
 import lombok.RequiredArgsConstructor;

@@ -37,7 +37,7 @@ export class FeedbacksComponent {
   }
 
   listar(){
-    const id = Number(this.localStorage.get('id'));
+    const id = Number(this.localStorage.get('idUser'));
     if(this.isDiarista){
       this.agendamentoService.listarPorDiaristaId(id).subscribe((agendamentos: Agendamento[]) => {
         this.agendamentos = agendamentos;

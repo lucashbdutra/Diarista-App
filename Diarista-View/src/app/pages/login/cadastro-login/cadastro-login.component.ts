@@ -17,7 +17,7 @@ import { ICliente } from 'src/app/interfaces/cliente';
   styleUrls: ['./cadastro-login.component.css']
 })
 export class CadastroLoginComponent implements OnInit {
-  isDiarista = '';
+  isDiarista = 'true';
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
@@ -44,8 +44,7 @@ export class CadastroLoginComponent implements OnInit {
   form = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
-    confirmarSenha: ['', Validators.required],
-    isDiarista: ['', Validators.required]
+    confirmarSenha: ['', Validators.required]
   })
 
   onCadastro(){
@@ -87,6 +86,10 @@ export class CadastroLoginComponent implements OnInit {
       });
     }
 
+  }
+
+  handleCheck(isDiarista : string){
+    this.isDiarista = isDiarista;
   }
 
 

@@ -1,12 +1,13 @@
-package com.sistema.diarista.controller.security.config;
+package com.sistema.diarista.controller.security;
 
+import com.sistema.diarista.controller.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -29,11 +30,6 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .antMatchers("/rest/auth/**").permitAll()
-                .antMatchers("/rest/clientes/**").permitAll()
-                .antMatchers("/rest/diaristas/**").permitAll()
-                .antMatchers("/swagger-ui.html").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -48,5 +44,17 @@ public class SecurityConfiguration {
 
 
         return http.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**",
+                "/rest/auth/**",
+                "/h2-console/**");
     }
 }

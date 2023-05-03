@@ -19,11 +19,11 @@ export class DiaristaService {
     ) { }
 
   listarTodosdiaristas() {
-    return this.http.get<Diarista[]>(`${this.api}/${this.endpoint}/`);
+    return this.http.get<Diarista[]>(`${this.api}/${this.endpoint}/`, this.loginService.getOptions());
   }
 
   adcionarDiarista(diarista: Partial<Diarista>){
-    return this.http.post<Diarista>(`${this.api}/${this.endpoint}/`, diarista);
+    return this.http.post<Diarista>(`${this.api}/${this.endpoint}/`, diarista, this.loginService.getOptions());
   }
 
   removerDiarista(id: string){
@@ -35,6 +35,6 @@ export class DiaristaService {
   }
 
   buscarDiaristaPorId(id: number) {
-    return this.http.get<Diarista>(`${this.api}/${this.endpoint}/${id}`);
+    return this.http.get<Diarista>(`${this.api}/${this.endpoint}/${id}`, this.loginService.getOptions());
   }
 }

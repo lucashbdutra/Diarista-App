@@ -47,7 +47,8 @@ export class CadastroAgendamentoComponent {
   }
 
   listar(){
-    const id = Number(this.localStorage.get('id'));
+    const id = Number(this.localStorage.get('idUser'));
+
 
     this.diaristaService.listarTodosdiaristas().subscribe((diaristas: Diarista[]) => {
       this.diaristas = diaristas;

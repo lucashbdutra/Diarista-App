@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
   isPresent(){
     this.user = this.localStorage.get('username')
-    this.id = this.localStorage.get('id');
+    this.id = this.localStorage.get('idUser');
     return this.loginService.isAuthenticated()
   }
 

@@ -1,4 +1,4 @@
-package com.sistema.diarista.controller.security.config;
+package com.sistema.diarista.controller.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

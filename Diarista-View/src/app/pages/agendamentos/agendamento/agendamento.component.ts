@@ -40,7 +40,8 @@ export class AgendamentoComponent implements OnInit {
   }
 
   listar(){
-    const id = Number(this.localStorage.get('id'));
+    const id = Number(this.localStorage.get('idUser'));
+    console.log(id);
     if(this.isDiarista){
       this.agendamentoService.listarPorDiaristaId(id).subscribe((agendamentos: Agendamento[]) => {
         this.agendamentos = agendamentos;
