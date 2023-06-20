@@ -23,7 +23,7 @@ export class LoginService {
   };
 
   setData(login: Partial<Login>, isDia: string){
-    console.log(login);
+
     this.localStorage.set('token', String(login.token));
     this.localStorage.set('id', String(login.id));
     this.localStorage.set('isDiarista', isDia);

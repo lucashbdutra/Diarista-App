@@ -1,0 +1,30 @@
+20-06-2023 14:48:29.811 | 349  | [main] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 14:48:30.139 | 677  | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 14:48:30.592 | 1130 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Starting DiaristaApplication using Java 17.0.7 on bartholoseu-VivoBook with PID 7673 (/home/bartholoseu/Github/Diarista-App/diarista/target/classes started by bartholoseu in /home/bartholoseu/Github/Diarista-App/diarista)
+20-06-2023 14:48:30.594 | 1132 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - No active profile set, falling back to 1 default profile: "default"
+20-06-2023 14:48:35.508 | 6046 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Started DiaristaApplication in 5.363 seconds (JVM running for 6.236)
+20-06-2023 14:48:35.512 | 6050 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - API da oficina iniciada e pronta para receber requisições
+20-06-2023 15:37:08.774 | 337  | [main] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 15:37:09.122 | 685  | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 15:37:09.604 | 1167 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Starting DiaristaApplication using Java 17.0.7 on bartholoseu-VivoBook with PID 14137 (/home/bartholoseu/Github/Diarista-App/diarista/target/classes started by bartholoseu in /home/bartholoseu/Github/Diarista-App/diarista)
+20-06-2023 15:37:09.606 | 1169 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - No active profile set, falling back to 1 default profile: "default"
+20-06-2023 15:37:15.935 | 7498 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Started DiaristaApplication in 6.804 seconds (JVM running for 7.739)
+20-06-2023 15:37:15.939 | 7502 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - API da oficina iniciada e pronta para receber requisições
+20-06-2023 19:18:39.546 | 569  | [main] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 19:18:39.851 | 874  | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 19:18:40.695 | 1718 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Starting DiaristaApplication using Java 17.0.7 on bartholoseu-VivoBook with PID 4527 (/home/bartholoseu/Github/Diarista-App/diarista/target/classes started by bartholoseu in /home/bartholoseu/Github/Diarista-App/diarista)
+20-06-2023 19:18:40.697 | 1720 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - No active profile set, falling back to 1 default profile: "default"
+20-06-2023 19:18:54.967 | 15990 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Started DiaristaApplication in 15.104 seconds (JVM running for 16.215)
+20-06-2023 19:18:54.980 | 16003 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - API da oficina iniciada e pronta para receber requisições
+20-06-2023 19:28:58.861 | 362  | [main] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 19:28:59.154 | 655  | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 19:28:59.701 | 1202 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Starting DiaristaApplication using Java 17.0.7 on bartholoseu-VivoBook with PID 8046 (/home/bartholoseu/Github/Diarista-App/diarista/target/classes started by bartholoseu in /home/bartholoseu/Github/Diarista-App/diarista)
+20-06-2023 19:28:59.704 | 1205 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - No active profile set, falling back to 1 default profile: "default"
+20-06-2023 19:29:05.699 | 7200 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Started DiaristaApplication in 6.533 seconds (JVM running for 7.436)
+20-06-2023 19:29:05.705 | 7206 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - API da oficina iniciada e pronta para receber requisições
+20-06-2023 19:50:46.866 | 506  | [main] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 19:50:47.209 | 849  | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Iniciando API
+20-06-2023 19:50:47.765 | 1405 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Starting DiaristaApplication using Java 17.0.7 on bartholoseu-VivoBook with PID 10769 (/home/bartholoseu/Github/Diarista-App/diarista/target/classes started by bartholoseu in /home/bartholoseu/Github/Diarista-App/diarista)
+20-06-2023 19:50:47.767 | 1407 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - No active profile set, falling back to 1 default profile: "default"
+20-06-2023 19:50:53.540 | 7180 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - Started DiaristaApplication in 6.321 seconds (JVM running for 7.418)
+20-06-2023 19:50:53.545 | 7185 | [restartedMain] | INFO  | c.s.diarista.DiaristaApplication - API da oficina iniciada e pronta para receber requisições

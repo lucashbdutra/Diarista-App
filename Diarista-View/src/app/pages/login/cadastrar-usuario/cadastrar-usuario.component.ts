@@ -91,6 +91,7 @@ export class CadastrarUsuarioComponent implements OnInit {
           this.loginService.relacionarCliente(cliente.cpf).subscribe((login: Login) => {
             if(login){
               this.localStorage.set('idUser', String(login.idUser));
+              this.router.navigate([`/home`])
             }
           });
         }

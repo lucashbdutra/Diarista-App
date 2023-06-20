@@ -87,6 +87,7 @@ export class CadastroDiaristaComponent implements OnInit {
           this.loginService.relacionarDiarista(diarista.cpf).subscribe((login: Login) => {
             if(login){
               this.localStorage.set('idUser', String(login.idUser));
+              this.router.navigate([`/home`])
             }
           });
         }
